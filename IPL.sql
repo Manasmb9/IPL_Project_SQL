@@ -20,3 +20,28 @@ umpire3 VARCHAR(50));
 
 \copy matches FROM '/home/dell/Downloads/matches.csv' DELIMITE ',' CSV HEADER;
 
+CREATE TABLE Delivery(                                                             
+match_id INT,
+inning INT,
+batting_team VARCHAR(50),
+bowling_team VARCHAR(50),
+over INT,
+ball INT,
+batsman VARCHAR(50),
+non_striker VARCHAR(50),
+bowler VARCHAR(50),
+is_super_over INT,
+wide_runs INT,
+bye_runs INT,
+legbye_runs INT,
+noball_runs INT,
+penalty_runs INT,
+batsman_runs INT,
+extra_runs INT,
+total_runs INT,
+player_dismissed VARCHAR(50),
+dismissal_kind VARCHAR(50),
+fielder VARCHAR(50),
+FOREIGN KEY(match_id) REFERENCES matches(id));
+
+\copy Delivery FROM '/home/dell/Downloads/deliveries.csv' DELIMITER ',' CSV HEADER;
