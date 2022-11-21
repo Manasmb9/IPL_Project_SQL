@@ -46,8 +46,26 @@ FOREIGN KEY(match_id) REFERENCES matches(id));
 
 \copy Delivery FROM '/home/dell/Downloads/deliveries.csv' DELIMITER ',' CSV HEADER;
 
-SELECT season , Count(season) as MatchesPlayedPerYear From matches GROUP BY season;
+SELECT season , Count(season) as MatchesPlayedPerYear 
+From matches 
+GROUP BY season;
 
-SELECT winner, Count(winner) as NumberofMatchesWonPerTeam From matches WHERE winner IS NOT NULL GROUP BY winner;
+SELECT winner, Count(winner) as NumberofMatchesWonPerTeam 
+From matches 
+WHERE winner IS NOT NULL 
+GROUP BY winner;
 
-SELECT batting_team, sum(extra_runs) as extrarunsconcededperteam FROM matches JOIN Delivery ON matches.id = Delivery.match_id WHERE season = 2016 GROUP BY batting_team;
+SELECT batting_team, sum(extra_runs) as extrarunsconcededperteam 
+FROM matches 
+JOIN Delivery ON matches.id = Delivery.match_id 
+WHERE season = 2016 
+GROUP BY batting_team;
+
+SELECT economicbowler.bowler AS Economicbowler
+FROM 
+(SELECT bowler, AVG(total_runs)*6 as Average 
+FROM matches JOIN Delivery on matches.id = Delivery.match_id 
+WHERE season = 2015 
+GROUP BY bowler 
+ORDER BY Average) as economicbowler 
+LIMIT 1;
