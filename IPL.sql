@@ -45,3 +45,5 @@ fielder VARCHAR(50),
 FOREIGN KEY(match_id) REFERENCES matches(id));
 
 \copy Delivery FROM '/home/dell/Downloads/deliveries.csv' DELIMITER ',' CSV HEADER;
+
+SELECT season , Count(season) as Matches_Played_Per_Year From matches GROUP BY season;
