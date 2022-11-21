@@ -69,3 +69,7 @@ WHERE season = 2015
 GROUP BY bowler 
 ORDER BY Average) as economicbowler 
 LIMIT 1;
+
+SELECT toss_winner , Count(toss_winner) as TossWinnersPerTeam 
+From matches 
+GROUP BY toss_winner;
